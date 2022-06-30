@@ -31,7 +31,10 @@ class PostController extends Controller
     public function show(Post $post){
         return view('posts.show',compact('post'));
     }
-
+    public function edit(Post $post)
+    {
+        return view('posts.edit',compact('post'));
+    }
     //Atualize o recurso especificado no armazenamento.
     public function update(Request $request, Post $post){
         $request->validate(['title'=>'required','description'=>'required']);
