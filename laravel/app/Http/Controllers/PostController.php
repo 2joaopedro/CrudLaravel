@@ -1,21 +1,23 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Contrller
+class PostController extends Controller
 {
     //Exiba uma listagem do recurso.
     public function index(){
         $data = Post::latest()->paginate(5);
 
-        return view('post.index', compact('data'))
+        return view('posts.index', compact('data'))
         ->with('i',(request()->input('page',1) -1) * 5);
     }
     
     //Mostre o formulário para criar um novo recurso.
     public function create(){
-        return view('posts,create');
+        return view('posts.create');
     }
 
     //Armazene um recurso recém-criado no armazenamento.
@@ -41,8 +43,7 @@ class PostController extends Contrller
     public function destroy(Post $post){
         $post->delete();
         
-        return redirect()->rout('posts.index')
+        return redirect()->route('posts.index')
         ->with('success','Post deleted successfully');
     }
-
 }

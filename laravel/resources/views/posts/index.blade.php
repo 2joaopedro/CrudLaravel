@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html>
 @extends('posts.layout')
 
 @section('content')
@@ -37,15 +25,17 @@
       <th width="280px">Action</th>
     </tr>
     @foreach($data as $key => $value)
-    <tr>
-      <td>{{++$i}}</td>
-      <td>{{$value->title}}</td>
-      <td>{{\Str::limit($value->description, 100)}}</td>
-      <td>
-        <form action="{{route('posts.destroy',$value->id)}}" method="POST">
-          <a class="btn btn-info" href="{{route('posts.show',$value->id)}}">Show</a>
-          <a class="btn btn-primary" href="{{route('posts.edit',$value->id)}}">Edit</a>
-        </form>
-      </td>
-    </tr>
+      <tr>
+        <td>{{++$i}}</td>
+        <td>{{$value->title}}</td>
+        <td>{{\Str::limit($value->description, 100)}}</td>
+        <td>
+          <form action="{{route('posts.destroy',$value->id)}}" method="POST">
+            <a class="btn btn-info" href="{{route('posts.show',$value->id)}}">Show</a>
+            <a class="btn btn-primary" href="{{route('posts.edit',$value->id)}}">Edit</a>
+          </form>
+        </td>
+      </tr>
+    @endforeach
   </table>
+@endsection
