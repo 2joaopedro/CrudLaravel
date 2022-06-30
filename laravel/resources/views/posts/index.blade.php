@@ -24,15 +24,15 @@
       <th>Details</th>
       <th width="280px">Action</th>
     </tr>
-    @foreach($data as $post)
+    @foreach($data as $key => $value)
       <tr>
         <td>{{++$i}}</td>
-        <td>{{$post->title}}</td>
-        <td>{{\Str::limit($post->description, 100)}}</td>
+        <td>{{$value->title}}</td>
+        <td>{{\Str::limit($value->description, 100)}}</td>
         <td>
-          <form action="{{route('posts.destroy',$post->id)}}" method="POST">
-            <a class="btn btn-info" href="{{route('posts.show', $post->id)}}">Show</a>
-            <a class="btn btn-primary" href="{{route('posts.edit', $post->id)}}">Edit</a>
+          <form action="{{route('posts.destroy',$value->id)}}" method="POST">
+            <a class="btn btn-info" href="{{route('posts.show', $value->id)}}">Show</a>
+            <a class="btn btn-primary" href="{{route('posts.edit', $value->id)}}">Edit</a>
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>
